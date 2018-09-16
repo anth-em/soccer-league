@@ -1,5 +1,5 @@
 //create roster of players
-var players: [[String:String]] = [
+let players: [[String:String]] = [
     ["Name": "Joe Smith",
      "Height": "42",
      "Experience": "YES",
@@ -73,5 +73,71 @@ var players: [[String:String]] = [
      "Experience": "YES",
      "Guardian": "Hyman and Rachel Krustofski"]
 ]
+
+//initialize the teams
+var teamSharks: [[String:String]] = []
+var teamDragons: [[String:String]] = []
+var teamRaptors: [[String:String]] = []
+
+//populate the teams
+func createTeams(fromRoster players: [[String:String]]) {
+    for player in players {
+        
+        var sharkYesCounter = 0
+        var dragonYesCounter = 0
+        var raptorYesCounter = 0
+        
+        var sharkNoCounter = 0
+        var dragonNoCounter = 0
+        var raptorNoCounter = 0
+        
+        for  person in teamSharks {
+            if person["Experience"] == "YES" {
+                sharkYesCounter += 1
+            } else {
+                sharkNoCounter += 1
+            }
+        }
+        
+        for person in teamDragons {
+            if person["Experience"] == "YES" {
+                dragonYesCounter += 1
+            } else {
+                dragonNoCounter += 1
+            }
+        }
+        
+        for person in teamRaptors {
+            if person["Experience"] == "YES" {
+                raptorYesCounter += 1
+            } else {
+                raptorNoCounter += 1
+            }
+        }
+        
+        let fewestYes = min(min(sharkYesCounter, dragonYesCounter), raptorYesCounter)
+        let fewestNo = min(min(sharkNoCounter, dragonNoCounter), raptorNoCounter)
+        
+        if player["Experience"] == "YES" {
+            switch fewestYes {
+            case sharkYesCounter: teamSharks.append(player)
+            case dragonYesCounter: teamDragons.append(player)
+            default: teamRaptors.append(player)
+            }
+        } else {
+            switch fewestNo {
+            case sharkNoCounter: teamSharks.append(player)
+            case dragonNoCounter: teamDragons.append(player)
+            default: teamRaptors.append(player)
+            }
+        }
+    }
+}
+
+createTeams(fromRoster: players)
+
+
+
+
 
 

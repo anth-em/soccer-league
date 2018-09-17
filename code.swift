@@ -136,6 +136,60 @@ func createTeams(fromRoster players: [[String:String]]) {
 
 createTeams(fromRoster: players)
 
+//initialize the letters
+var letters: [[String]] = []
+
+//create the letters
+func createLetters(fromRoster players: [[String:String]]) {
+    for player in players {
+        var team: String = ""
+        var time: String = ""
+        
+        for person in teamSharks {
+            if player == person {
+                team = "Sharks"
+                time = "March 17, 3pm"
+            }
+        }
+        
+        for person in teamDragons {
+            if player == person {
+                team = "Dragons"
+                time = "March 17, 1pm"
+            }
+        }
+        
+        for person in teamRaptors {
+            if player == person {
+                team = "Raptors"
+                time = "March 18, 1pm"
+            }
+        }
+        
+        letters.append([
+            "Dear " + player["Guardian"]! + ",\n" +
+                "We are excited to welcome " + player["Name"]! + " to this year's soccer league!"  + "\n" +
+                player["Name"]! + " has been assigned to the " + team + " team." + "\n" +
+                "The first practice for the " + team + " team will be " + time + "."  + "\n" +
+                "We look forward to meeting you all then!" + "\n" +
+                "Sincerely," + "\n" +
+                "Super Fun Soccer, inc." + "\n"
+            ])
+    }
+}
+
+createLetters(fromRoster: players)
+
+//write the letters
+func writeLetters(fromList letters: [[String]]) {
+    for letter in letters {
+        print(letter[0])
+    }
+}
+
+writeLetters(fromList: letters)
+
+
 
 
 
